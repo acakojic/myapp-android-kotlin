@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(){
             print("PRINT messages!!!")
         }
 
+        //process to new ItemActivity
         idButton03.setOnClickListener{
             val text = idEditText.text.toString()
             val intent = Intent(this, SecondActivity::class.java)

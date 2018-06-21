@@ -24,8 +24,7 @@ class SecondActivity : AppCompatActivity() {
         val idTextView: TextView = findViewById(R.id.idTextView)
         val idButton: Button = findViewById(R.id.idButton)
 
-
-        //get textString from MainComponent
+        //get textString from MainActivity
         val intentText = getIntent()
         val textName = intentText.getStringExtra("textName")
         idTextView.text = textName
@@ -41,8 +40,12 @@ class SecondActivity : AppCompatActivity() {
         idListView.adapter = adapter
 
         idListView.setOnItemClickListener { parent, view, position, id ->
-            idTextView.text = items[position]
+            val text = items[position]
+            val intent = Intent(this, ItemActivity::class.java)
+            intent.putExtra("item", text)
+            startActivity(intent)
         }
+
     }
 
 }
