@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(){
         idTextView = findViewById(R.id.idTextView)
         idEditText = findViewById(R.id.idEditText)
         idButton = findViewById(R.id.idButton)
+        idButton02 = findViewById(R.id.idButton02)
         idListView = findViewById(R.id.idListView)
         var handler: MessagesDBHelper
         handler = MessagesDBHelper(this@MainActivity)
@@ -31,6 +32,14 @@ class MainActivity : AppCompatActivity(){
 
             handler.insertMessages(text) //inserted into database
             Toast.makeText(this@MainActivity, "Inserted Successfully", Toast.LENGTH_SHORT).show()
+        }
+
+        idButton02.setOnClickListener{
+            val text = idEditText.text.toString()
+            val text02 = idEditText02.text.toString()
+
+            handler.updateMessages(text, text02)
+            print("CREATED TABLE messages!!!")
         }
 
         //idButton02.setOnClickListener{}
