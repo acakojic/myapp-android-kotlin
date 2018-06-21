@@ -1,5 +1,6 @@
 package com.example.koja.myapplication
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,8 +11,10 @@ class MainActivity : AppCompatActivity(){
 
     lateinit var idTextView: TextView
     lateinit var idEditText: EditText
+    lateinit var idEditText02: EditText
     lateinit var idButton: Button
     lateinit var idButton02: Button
+    lateinit var idButton03: Button
     lateinit var idListView: ListView
     lateinit var messagesDBHelper: MessagesDBHelper
 
@@ -21,9 +24,11 @@ class MainActivity : AppCompatActivity(){
 
         idTextView = findViewById(R.id.idTextView)
         idEditText = findViewById(R.id.idEditText)
+        idEditText02 = findViewById(R.id.idEditText02)
         idButton = findViewById(R.id.idButton)
         idButton02 = findViewById(R.id.idButton02)
         idListView = findViewById(R.id.idListView)
+        idButton03 = findViewById(R.id.idButton03)
         var handler: MessagesDBHelper
         handler = MessagesDBHelper(this@MainActivity)
 
@@ -39,7 +44,14 @@ class MainActivity : AppCompatActivity(){
             val text02 = idEditText02.text.toString()
 
             handler.updateMessages(text, text02)
-            print("CREATED TABLE messages!!!")
+            print("PRINT messages!!!")
+        }
+
+        idButton03.setOnClickListener{
+            val text = idEditText.text.toString()
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("textName", text)
+            startActivity(intent)
         }
 
         //idButton02.setOnClickListener{}
