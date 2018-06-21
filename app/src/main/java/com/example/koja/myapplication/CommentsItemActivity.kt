@@ -25,6 +25,7 @@ class CommentsItemActivity : AppCompatActivity() {
         val adapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, comments)
         idListView.adapter = adapter
 
+        //Update data
         idButton.setOnClickListener {
             var text: String = idEditText.text.toString()
             comments.add(text)
