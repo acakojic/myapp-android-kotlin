@@ -30,6 +30,7 @@ class CommentsItemActivity : AppCompatActivity() {
             var text: String = idEditText.text.toString()
             comments.add(text)
             adapter.notifyDataSetChanged()
+            idEditText.text.clear()
         }
 
     }
