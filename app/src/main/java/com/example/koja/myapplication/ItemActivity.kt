@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class ItemActivity : AppCompatActivity() {
 
@@ -24,5 +25,11 @@ class ItemActivity : AppCompatActivity() {
             val intent = Intent(this, DescribeItemActivity::class.java)
             startActivity(intent)
         }
+
+        idButton02.setOnClickListener{
+            val intent = Intent(this, CommentsItemActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

@@ -21,7 +21,8 @@
             android:label="@string/title_activity_second"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ItemActivity" />
-        <activity android:name=".DescribeItemActivity"></activity>
+        <activity android:name=".DescribeItemActivity" />
+        <activity android:name=".CommentsItemActivity"></activity>
     </application>
 
 </manifest>

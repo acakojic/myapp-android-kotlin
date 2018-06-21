@@ -39,7 +39,7 @@ class SecondActivity : AppCompatActivity() {
         val adapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
         idListView.adapter = adapter
 
-        idListView.setOnItemClickListener { parent, view, position, id ->
+        idListView.setOnItemClickListener { _, _, position, _ ->
             val text = items[position]
             val intent = Intent(this, ItemActivity::class.java)
             intent.putExtra("item", text)

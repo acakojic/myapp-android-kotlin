@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(){
         idButton02 = findViewById(R.id.idButton02)
         idListView = findViewById(R.id.idListView)
         idButton03 = findViewById(R.id.idButton03)
-        var handler: MessagesDBHelper
+        val handler: MessagesDBHelper
         handler = MessagesDBHelper(this@MainActivity)
 
         idButton.setOnClickListener {
@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity(){
         }
 
         //idButton02.setOnClickListener{}
-        var list: ArrayList<String> = handler.selectMessages()
-        var adp: ArrayAdapter<String>
+        val list: ArrayList<String> = handler.selectMessages()
+        val adp: ArrayAdapter<String>
 
         adp = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, list)
         idListView.adapter = adp
