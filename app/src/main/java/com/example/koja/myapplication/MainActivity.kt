@@ -9,6 +9,8 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
+    var number: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,17 +40,44 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == 1) {
                     idListView.setVisibility(View.VISIBLE)
-
-                    idListView.adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, selling)
-                    idTextView.text = elements[position]
+                    setupListView(idListView, idTextView, selling, elements, position)
+                    number = 1
+                }
+                else if (position == 2){
+                    idListView.setVisibility(View.VISIBLE)
+                    setupListView(idListView, idTextView, buying, elements, position)
+                    number = 2
                 }
                 else{
-                    idListView.adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, buying)
-                    idTextView.text = elements[position]
+                    idListView.setVisibility(View.INVISIBLE)
+                    number = 0
                 }
             }
         }
 
+        idListView.setOnItemClickListener { _, _, position, _ ->
+            if (number == 1) {
+                setupOnClickListView(selling, position)
+            }
+            else if (number == 2){
+                setupOnClickListView(buying, position)
+            }
+            else{
+                //number = 0
+            }
+        }
 
+    }
+
+    fun setupListView (idListView: ListView, idTextView: TextView, arrayList: Array<String>, elements: Array<String>, position: Int){
+        idListView.adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, arrayList)
+        idTextView.text = elements[position]
+    }
+
+    fun setupOnClickListView(arrayList: Array<String>, position: Int){
+        val text = arrayList[position]
+        val intent = Intent(this@MainActivity, ItemActivity::class.java)
+        intent.putExtra("item", text)
+        startActivity(intent)
     }
 }
