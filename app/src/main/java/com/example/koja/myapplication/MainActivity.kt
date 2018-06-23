@@ -5,63 +5,50 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(){
 
-    lateinit var idTextView: TextView
-    lateinit var idEditText: EditText
-    lateinit var idEditText02: EditText
-    lateinit var idButton: Button
-    lateinit var idButton02: Button
-    lateinit var idButton03: Button
-    lateinit var idListView: ListView
-    lateinit var messagesDBHelper: MessagesDBHelper
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        idTextView = findViewById(R.id.idTextView)
-        idEditText = findViewById(R.id.idEditText)
-        idEditText02 = findViewById(R.id.idEditText02)
-        idButton = findViewById(R.id.idButton)
-        idButton02 = findViewById(R.id.idButton02)
-        idListView = findViewById(R.id.idListView)
-        idButton03 = findViewById(R.id.idButton03)
-        val handler: MessagesDBHelper
-        handler = MessagesDBHelper(this@MainActivity)
+        val elements = arrayOf("Odabir - Klikni Ovde", "Prodaja - 23", "Kupovina - 56")
+        val buying = arrayOf("Malina", "Kupina", "Tresnja", "Visnja", "Jabuka", "Sljiva", "Kajsija")
+        val selling = arrayOf("Magarac", "Konj", "Krava", "Ovca", "Kokoska")
 
-        idButton.setOnClickListener {
-            val text = idEditText.text.toString()
+        val idSpinner: Spinner = findViewById(R.id.idSpinner)
+        val idListView: ListView = findViewById(R.id.idListView)
+        val idTextView: TextView = findViewById(R.id.idTextView)
 
-            handler.insertMessages(text) //inserted into database
-            Toast.makeText(this@MainActivity, "Inserted Successfully", Toast.LENGTH_SHORT).show()
+        //spinner
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, elements)
+        idSpinner.adapter = adapter
+
+        //listview
+        val adapter02 = ArrayAdapter(this, android.R.layout.simple_list_item_1, elements)
+        adapter02.setDropDownViewResource(android.R.layout.simple_list_item_1)
+        idListView.adapter = adapter02
+
+        idSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                idTextView.text = "onNothingSelected"
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == 1) {
+                    idListView.setVisibility(View.VISIBLE)
+
+                    idListView.adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, selling)
+                    idTextView.text = elements[position]
+                }
+                else{
+                    idListView.adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, buying)
+                    idTextView.text = elements[position]
+                }
+            }
         }
 
-        idButton02.setOnClickListener{
-            val text = idEditText.text.toString()
-            val text02 = idEditText02.text.toString()
-
-            handler.updateMessages(text, text02)
-            print("PRINT messages!!!")
-        }
-
-        //process to new ItemActivity
-        idButton03.setOnClickListener{
-            val text = idEditText.text.toString()
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("textName", text)
-            startActivity(intent)
-        }
-
-        //idButton02.setOnClickListener{}
-        val list: ArrayList<String> = handler.selectMessages()
-        val adp: ArrayAdapter<String>
-
-        adp = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, list)
-        idListView.adapter = adp
 
     }
 }
-
