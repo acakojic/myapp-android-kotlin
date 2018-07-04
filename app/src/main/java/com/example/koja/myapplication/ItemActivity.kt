@@ -15,6 +15,7 @@ class ItemActivity : AppCompatActivity() {
 
         val idTextView: TextView = findViewById(R.id.idTextView)
         val idButton: Button = findViewById(R.id.idButton)
+        val idButton02: Button = findViewById(R.id.idButton02)
 
         //get textString from SecondActivity
         val intentText = getIntent()

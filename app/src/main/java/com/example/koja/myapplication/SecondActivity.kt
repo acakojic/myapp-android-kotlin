@@ -32,6 +32,7 @@ class SecondActivity : AppCompatActivity() {
 
         //ListView
         val idListView: ListView = findViewById(idListView)
+
         val adapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
         idListView.adapter = adapter
 

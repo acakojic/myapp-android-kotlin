@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else{
                     idListView.setVisibility(View.INVISIBLE)
+                    idTextView.text = ""
                     number = 0
                 }
             }
